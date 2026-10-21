@@ -1,0 +1,52 @@
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 3, "width": 2.2911}, "input": "\\begin{align*} a &= b \\end{align*}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 10, "width": 5.62583}, "input": "\\begin{align*} a&=b+c \\\\ d+e&=f \\end{align*}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 16, "width": 5.70881}, "input": "\\begin{alignat*}{2} 10&x+ &3&y = 2 \\\\ 3&x+&13&y = 4 \\end{alignat*}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 6, "width": 4.57768}, "input": "\\begin{alignat*}{2} a &= b & c &= d \\end{alignat*}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 18, "width": 7.15928}, "input": "\\begin{alignat}{2} a &= b & c &= d \\\\ e &= f & g &= h \\end{alignat}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 16, "width": 7.00349}, "input": "\\begin{alignat}{2} x &= y & a &= b \\\\ &= z & &= c \\end{alignat}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 16, "width": 5.70881}, "input": "\\begin{alignedat}{2} 10&x+ &3&y = 2 \\\\ 3&x+&13&y = 4 \\end{alignedat}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 6, "width": 4.57768}, "input": "\\begin{alignedat}{2} a &= b & c &= d \\end{alignedat}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 9, "width": 6.97388}, "input": "\\begin{alignedat}{3} a &= b & c &= d & e &= f \\end{alignedat}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 3, "width": 2.39052}, "input": "\\begin{aligned} a & b & c \\end{aligned}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 9, "width": 8.97388}, "input": "\\begin{aligned} a &= b & c &= d & e &= f \\end{aligned}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 6, "width": 5.57768}, "input": "\\begin{aligned} a &= b & c &= d \\end{aligned}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 4, "width": 3.72386}, "input": "\\begin{aligned} a &= b & c \\end{aligned}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 6, "width": 2.38242}, "input": "\\begin{aligned} a &= b \\\\ c &= d \\end{aligned}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 10, "width": 5.62583}, "input": "\\begin{aligned} a&=b+c \\\\ d+e&=f \\end{aligned}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 9, "width": 3.36715}, "input": "\\begin{aligned}[b] a &= b \\\\ c &= d \\end{aligned}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 9, "width": 3.29909}, "input": "\\begin{aligned}[t] a &= b \\\\ c &= d \\end{aligned}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 3, "width": 2.27778}, "input": "\\begin{align} & \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 12, "width": 4.6602}, "input": "\\begin{align} \\displaystyle a &= b \\\\ c &= d \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 6, "width": 4.56888}, "input": "\\begin{align} \\textstyle a &= b \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 6, "width": 4.56888}, "input": "\\begin{align} a &= b \\\\ & \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 10, "width": 4.56888}, "input": "\\begin{align} a &= b \\\\ &= {} \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 6, "width": 4.56888}, "input": "\\begin{align} a &= b \\\\ \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 12, "width": 4.6602}, "input": "\\begin{align} a &= b \\\\ c &= d \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.6, "height": 2.1, "itemCount": 12, "width": 4.6602}, "input": "\\begin{align} a &= b \\\\[1em] c &= d \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 9, "width": 4.6602}, "input": "\\begin{align} a &= b \\notag \\\\ c &= d \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 3, "width": 2.2911}, "input": "\\begin{align} a &= b \\notag \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 7, "width": 5.12849}, "input": "\\begin{align} a &= b \\tag*{star} \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 9, "width": 4.73173}, "input": "\\begin{align} a &= b \\tag{x} \\\\ c &= d \\nonumber \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 5, "width": 4.06888}, "input": "\\begin{align} a &= b \\tag{} \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.5, "height": 1.0, "itemCount": 6, "width": 4.56888}, "input": "\\begin{align} a &= {b \\nonumber} \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 12, "width": 4.68265}, "input": "\\begin{align} x &= 1 \\\\ y &= 2 \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 9, "width": 4.68265}, "input": "\\begin{align} x &= 1 \\nonumber \\\\ y &= 2 \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 17, "width": 7.38046}, "input": "\\begin{align} x &= 1 \\tag{custom} \\\\ y &= 2 \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 9, "width": 4.92548}, "input": "\\begin{align} x &= y \\nonumber \\\\ z &= w \\end{align}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 9, "width": 4.14701}, "input": "\\begin{equation*} \\begin{split} a &=b+c\\\\ &=e+f \\end{split} \\end{equation*}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 8, "width": 4.57247}, "input": "\\begin{equation} \\begin{split} a &= b \\\\ &= c \\end{split} \\end{equation}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 5, "width": 2.29469}, "input": "\\begin{split} a &= b \\\\ &= c \\end{split}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 9, "width": 4.85902}, "input": "\\begin{cases} a & x > 0 \\\\ b & x < 0 \\end{cases}", "reason": "null-delimiter"}
+{"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 9, "width": 3.80798}, "input": "\\begin{cases} a &\\text{if } b \\\\ c &\\text{if } d \\end{cases}", "reason": "null-delimiter"}
+{"displayList": {"depth": 1.55002, "height": 2.05002, "itemCount": 11, "width": 3.34901}, "input": "\\begin{dcases} \\frac{a}{b} & x \\\\ c & y \\end{dcases}", "reason": "null-delimiter"}
+{"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 9, "width": 3.80798}, "input": "\\begin{dcases} a &\\text{if } b \\\\ c &\\text{if } d \\end{dcases}", "reason": "null-delimiter"}
+{"displayList": {"depth": 0.65002, "height": 1.15, "itemCount": 5, "width": 3.12679}, "input": "\\begin{drcases} \\frac{a}{b} & x \\end{drcases}", "reason": "null-delimiter"}
+{"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 9, "width": 3.80798}, "input": "\\begin{drcases} a &\\text{if } b \\\\ c &\\text{if } d \\end{drcases}", "reason": "null-delimiter"}
+{"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 5, "width": 3.02568}, "input": "\\begin{rcases} a & x \\\\ b & y \\end{rcases}", "reason": "null-delimiter"}
+{"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 9, "width": 3.80798}, "input": "\\begin{rcases} a &\\text{if } b \\\\ c &\\text{if } d \\end{rcases}", "reason": "null-delimiter"}
+{"displayList": {"depth": 0.95003, "height": 1.45, "itemCount": 4, "width": 1.3847}, "input": "\\genfrac{{(}}{)}{}0{a}{b}", "reason": "null-delimiter"}
+{"displayList": {"depth": 0.25, "height": 0.75, "itemCount": 2, "width": 0.96931}, "input": "\\left. x \\right|", "reason": "null-delimiter"}
+{"displayList": {"depth": 0.686, "height": 1.15, "itemCount": 4, "width": 1.48581}, "input": "\\left.\\dfrac a b\\right)", "reason": "null-delimiter"}
+{"displayList": {"depth": 9.268, "height": 10.0, "itemCount": 2, "width": 1.095}, "input": "\\left.\\rule{1pt}{100pt}\\right)", "reason": "null-delimiter"}
+{"displayList": {"depth": 0.686, "height": 1.15, "itemCount": 4, "width": 1.55526}, "input": "\\left\\lbrace \\dfrac ab \\right.", "reason": "null-delimiter"}
+{"displayList": {"depth": 2.50676, "height": 3.00676, "itemCount": 44, "width": 9.90078}, "input": "\\left\\{\\begin{array}{l} \\nabla\\cdot\\vec{D} = \\rho \\\\ \\nabla\\cdot\\vec{B} = 0 \\\\ \\nabla\\times\\vec{E} = -\\frac{\\partial\\vec{B}}{\\partial t} \\\\ \\nabla\\times\\vec{H} = \\vec{J}_f + \\frac{\\partial\\vec{D}}{\\partial t} \\end{array}\\right.", "reason": "null-delimiter"}

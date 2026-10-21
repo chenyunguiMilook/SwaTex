@@ -9,7 +9,9 @@ import Testing
 /// output over its golden corpora (regenerate with:
 /// `target/release/ratex-layout < tests/golden/<corpus>.txt`). Every formula's
 /// box metrics and display-list summary must match the Rust engine **exactly**
-/// (both engines round to 5 decimals).
+/// (both engines round to 5 decimals) — except the inputs in
+/// `katex_divergences.jsonl`, where RaTeX differs from KaTeX and SwaTex follows
+/// KaTeX (see `KaTeXDivergences`).
 @Suite("GoldenLayout")
 struct GoldenLayoutTests {
     struct Fixture: Decodable {
@@ -58,9 +60,14 @@ struct GoldenLayoutTests {
 
             switch (result, fixture.error == true) {
             case (.success(let dl), false):
-                guard let box = fixture.box, let fdl = fixture.displayList else {
+                guard let box = fixture.box, var fdl = fixture.displayList else {
                     mismatches.append("\(fixture.input): fixture missing box")
                     continue
+                }
+                if let katex = KaTeXDivergences.byInput[fixture.input] {
+                    fdl = Fixture.DL(
+                        width: katex.width, height: katex.height, depth: katex.depth,
+                        itemCount: katex.itemCount)
                 }
                 // The fixture's box is the pre-display LayoutBox; compare via
                 // the display list dimensions, which are what renderers consume.
@@ -89,6 +96,27 @@ struct GoldenLayoutTests {
             + mismatches.prefix(20).joined(separator: "\n")
         #expect(mismatches.isEmpty, Comment(rawValue: detail))
         #expect(checked > 0)
+    }
+
+    /// Every KaTeX divergence is an input of a golden corpus whose RaTeX value really differs: an
+    /// entry left behind after RaTeX fixes the same thing would pin a stale number for no reason.
+    @Test func katexDivergencesStillDiverge() throws {
+        var rust: [String: Fixture.DL] = [:]
+        for corpus in ["test_cases", "test_case_ce", "test_cases_coverage", "test_cases_prooftree"]
+        {
+            for fixture in try Self.fixtures(corpus) {
+                if let dl = fixture.displayList { rust[fixture.input] = dl }
+            }
+        }
+        #expect(KaTeXDivergences.entries.count > 40)
+        for entry in KaTeXDivergences.entries {
+            let r = try #require(rust[entry.input], "\(entry.input) is in no golden corpus")
+            let k = entry.displayList
+            #expect(
+                r.width != k.width || r.height != k.height || r.depth != k.depth
+                    || r.itemCount != k.itemCount,
+                "\(entry.input): RaTeX agrees now — drop it from katex_divergences.jsonl")
+        }
     }
 
     @Test func mainCorpus() throws {

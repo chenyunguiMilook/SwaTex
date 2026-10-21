@@ -183,7 +183,16 @@ between the engines. Every number is reproducible with the commands in
   math axis; `\gdef`/`\xdef` survive group exit; zero-arg delimited
   `\def` macros validate and consume their parameter text; `\middle`
   nested deeper than 8 `\left…\right` stretch scopes renders at natural
-  (unstretched) size.
+  (unstretched) size; aligned/align/alignat columns take their own
+  `pregap`/`postgap` (no space inside an `rl` pair, 1em between pairs,
+  relations keep their full spacing) instead of one uniform 3mu gap;
+  `\left.` / `\right.` / `\middle.` take `\nulldelimiterspace` (so
+  `cases` is 0.12em wider). The golden corpora stay RaTeX's output; these
+  inputs are listed with their KaTeX-checked values in
+  `Tests/SwaTexTests/Resources/golden/katex_divergences.jsonl`.
+- `scripts/katex_diff` compares glyph positions against KaTeX itself
+  (headless Chrome) rather than against RaTeX; its README has the current
+  baseline and the known remaining differences.
 - Shared with KaTeX/RaTeX upstream: `\begin{alignat}{N}` does not bound
   `N`; hostile inputs should be length-limited by the host app. Deeply
   nested input is guarded (recursion count + stack headroom → parse
