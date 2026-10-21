@@ -199,8 +199,10 @@ func layoutSupSub(
     let italicCorrection = 0.0
 
     // KaTeX `supsub.js`: for SymbolNode bases, subscripts get `margin-left: -base.italic`
-    // so they are not shifted by the base's italic correction (e.g. ∫_{A_1}).
-    let subHKern = subBox != nil && !centerScripts ? -glyphItalic(baseBox) : 0.0
+    // so they are not shifted by the base's italic correction (e.g. ∫_{A_1}). Only a base that
+    // *is* one symbol: a group (`{x}_n`, `\mathrm{inf}_n`) is a span in KaTeX and keeps its
+    // subscript after the full width, correction included.
+    let subHKern = subBox != nil && !centerScripts ? -directGlyphItalic(baseBox) : 0.0
 
     // Compute total dimensions (using scaled child dimensions)
     var height = baseBox.height

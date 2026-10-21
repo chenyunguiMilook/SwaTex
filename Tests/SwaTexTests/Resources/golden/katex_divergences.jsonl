@@ -36,7 +36,82 @@
 {"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 9, "width": 4.14701}, "input": "\\begin{equation*} \\begin{split} a &=b+c\\\\ &=e+f \\end{split} \\end{equation*}", "reason": "align-column-gaps"}
 {"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 8, "width": 4.57247}, "input": "\\begin{equation} \\begin{split} a &= b \\\\ &= c \\end{split} \\end{equation}", "reason": "align-column-gaps"}
 {"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 5, "width": 2.29469}, "input": "\\begin{split} a &= b \\\\ &= c \\end{split}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.0, "height": 0.69444, "itemCount": 4, "width": 2.88954}, "input": "\\bm{AaBb}", "reason": "font-group"}
+{"displayList": {"depth": 0.19444, "height": 0.63333, "itemCount": 3, "width": 2.62523}, "input": "\\bm{x+y}", "reason": "font-group"}
+{"displayList": {"depth": 0.0, "height": 0.69444, "itemCount": 4, "width": 2.88954}, "input": "\\boldsymbol{AaBb}", "reason": "font-group"}
+{"displayList": {"depth": 0.19444, "height": 0.63333, "itemCount": 3, "width": 2.70578}, "input": "\\boldsymbol{x+\\mu}", "reason": "font-group"}
+{"displayList": {"depth": 1.00211, "height": 1.21537, "itemCount": 30, "width": 12.34912}, "input": "\\ce{Hg^2+ ->[I-]  $\\underset{\\mathrm{red}}{\\ce{HgI2}}$  ->[I-]  $\\underset{\\mathrm{red}}{\\ce{[Hg^{II}I4]^2-}}$}", "reason": "font-group"}
+{"displayList": {"depth": 0.94655, "height": 1.21537, "itemCount": 14, "width": 6.244}, "input": "\\ce{Hg^2+ ->[I-] $\\underset{\\mathrm{red}}{\\ce{HgI2}}$}", "reason": "font-group"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 3, "width": 2.04015}, "input": "\\mathcal{ABC}", "reason": "font-group"}
+{"displayList": {"depth": 0.0, "height": 0.7, "itemCount": 3, "width": 2.54519}, "input": "\\mathscr{ABC}", "reason": "font-group"}
 {"displayList": {"depth": 0.32222, "height": 0.595, "itemCount": 5, "width": 1.08097}, "input": "\\genfrac{\\lbrace}{\\rbrace}{1pt}{2}{a}{b}", "reason": "fraction-class"}
+{"displayList": {"depth": 0.28611, "height": 0.89911, "itemCount": 15, "width": 7.99437}, "input": "T^{\\mu\\nu}{}_{\\rho} = g^{\\mu\\alpha}g^{\\nu\\beta}T_{\\alpha\\beta\\rho}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 1.18079, "itemCount": 5, "width": 6.51791}, "input": "\\LARGE LARGE", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.61508, "itemCount": 6, "width": 2.68335}, "input": "\\arcctg", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.61508, "itemCount": 5, "width": 2.2389}, "input": "\\arctg", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.43056, "itemCount": 3, "width": 1.40556}, "input": "\\arg", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.43056, "itemCount": 6, "width": 3.43335}, "input": "\\argmax", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.66786, "itemCount": 6, "width": 3.23891}, "input": "\\argmin", "reason": "italic-combine"}
+{"displayList": {"depth": 2.4945, "height": 3.13061, "itemCount": 28, "width": 9.62465}, "input": "\\begin{CD} A @>{very long label above}>> B \\\\ @V{L}VV @AA{R}A \\\\ C @>>> D \\end{CD}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.2, "height": 2.28666, "itemCount": 12, "width": 5.50224}, "input": "\\begin{prooftree} \\AxiomC{A} \\LeftLabel{Left} \\RightLabel{Right} \\UnaryInfC{B} \\end{prooftree}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.2, "height": 3.88999, "itemCount": 24, "width": 10.97726}, "input": "\\begin{prooftree} \\AxiomC{A} \\LeftLabel{VeryLongLeftLabel} \\UnaryInfC{B} \\RightLabel{R2} \\UnaryInfC{C} \\end{prooftree}", "reason": "italic-combine"}
+{"displayList": {"depth": 1.80333, "height": 0.68333, "itemCount": 24, "width": 11.77505}, "input": "\\begin{prooftree} \\rootAtTop \\AxiomC{A} \\LeftLabel{VeryVeryLongLeftLabel} \\UnaryInfC{B} \\end{prooftree}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.2, "height": 2.28666, "itemCount": 15, "width": 6.97947}, "input": "\\begin{prooftree}\\AxiomC{A\\fCenter{}B}\\LeftLabel{cut}\\RightLabel{alpha}\\UnaryInfC{C\\fCenter{}D}\\end{prooftree}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.2, "height": 2.28666, "itemCount": 5, "width": 3.0139}, "input": "\\begin{prooftree}\\AxiomC{A\\fCenter{}B}\\UnaryInfC{C}\\end{prooftree}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.2, "height": 2.30888, "itemCount": 31, "width": 15.21254}, "input": "\\begin{prooftree}\\AxiomC{Gamma\\fCenter{}Delta}\\AxiomC{Sigma\\fCenter{}Pi}\\BinaryInfC{Theta\\fCenter{}Omega}\\end{prooftree}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.2, "height": 2.28666, "itemCount": 44, "width": 23.76067}, "input": "\\begin{prooftree}\\AxiomC{P}\\LeftLabel{very-long-left-label}\\RightLabel{very-long-right-label}\\UnaryInfC{Q}\\end{prooftree}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.15, "height": 0.69444, "itemCount": 9, "width": 5.45556}, "input": "\\ce{\"foo\" + H2O}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.25, "height": 0.75, "itemCount": 5, "width": 2.27779}, "input": "\\ce{(x)yz}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.69444, "itemCount": 15, "width": 6.80836}, "input": "\\ce{1,2,3-trimethyl}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.70043, "height": 1.10811, "itemCount": 11, "width": 4.48335}, "input": "\\ce{A ->[above]C[H2O] B}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.25, "height": 1.21537, "itemCount": 24, "width": 12.34912}, "input": "\\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.25, "height": 0.84456, "itemCount": 8, "width": 3.80001}, "input": "\\ce{[AgCl2]-}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.61508, "itemCount": 4, "width": 1.84723}, "input": "\\cotg", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.61508, "itemCount": 3, "width": 1.34723}, "input": "\\ctg", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 2, "width": 1.42501}, "input": "\\def\\foo{F}\\foo\\foo", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.69444, "itemCount": 3, "width": 1.5139}, "input": "\\deg", "reason": "italic-combine"}
+{"displayList": {"depth": 0.15555, "height": 0.55555, "itemCount": 12, "width": 4.46673}, "input": "\\footnotesize footnotesize", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.69444, "itemCount": 10, "width": 5.27862}, "input": "\\hbox spread 2em{x}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.69444, "itemCount": 3, "width": 1.21668}, "input": "\\inf", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.69444, "itemCount": 2, "width": 0.79167}, "input": "\\lg", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.69444, "itemCount": 3, "width": 1.29167}, "input": "\\log", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.69444, "itemCount": 10, "width": 5.03249}, "input": "\\normalsize normalsize", "reason": "italic-combine"}
+{"displayList": {"depth": 0.25, "height": 1.29, "itemCount": 9, "width": 3.60175}, "input": "\\overbracket[1pt]{xyz}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.97056, "itemCount": 4, "width": 1.57084}, "input": "\\overbracket{xyz}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 1.21544, "itemCount": 21, "width": 9.84366}, "input": "\\overrightarrow{very long arrow content}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.08333, "height": 0.69444, "itemCount": 10, "width": 5.85558}, "input": "\\pu{123 abc-def}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.08333, "height": 0.69444, "itemCount": 3, "width": 2.27778}, "input": "\\pu{a-b}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.69444, "itemCount": 4, "width": 3.09723}, "input": "\\pu{kg-m}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.13611, "height": 0.46166, "itemCount": 10, "width": 3.0332}, "input": "\\scriptsize scriptsize", "reason": "italic-combine"}
+{"displayList": {"depth": 0.11666, "height": 0.39571, "itemCount": 9, "width": 2.39578}, "input": "\\sixptsize sixptsize", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.625, "itemCount": 5, "width": 2.24261}, "input": "\\small small", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.61508, "itemCount": 2, "width": 0.90278}, "input": "\\tg", "reason": "italic-combine"}
+{"displayList": {"depth": 0.76, "height": 0.75, "itemCount": 14, "width": 5.52155}, "input": "\\underbracket[1pt][2pt]{xyz}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.70444, "height": 0.43056, "itemCount": 4, "width": 1.57084}, "input": "\\underbracket{xyz}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.471, "height": 1.04833, "itemCount": 7, "width": 4.44112}, "input": "\\utilde{EF} + \\widehat{GH}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.71944, "height": 0.69444, "itemCount": 20, "width": 9.1471}, "input": "\\utilde{very long content here}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.67944, "height": 0.43056, "itemCount": 5, "width": 2.31367}, "input": "\\utilde{xyzw}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.81777}, "input": "\\varDelta", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.62722}, "input": "\\varGamma", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.69222}, "input": "\\varLambda", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.71555}, "input": "\\varOmega", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.71555}, "input": "\\varPhi", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.74333}, "input": "\\varPi", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.76666}, "input": "\\varPsi", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.71555}, "input": "\\varSigma", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.76666}, "input": "\\varTheta", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.76666}, "input": "\\varUpsilon", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 1, "width": 0.66444}, "input": "\\varXi", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.91556, "itemCount": 7, "width": 3.37085}, "input": "\\widecheck{xyzwvu}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.79556, "itemCount": 4, "width": 1.57084}, "input": "\\widecheck{xyz}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 1.17944, "itemCount": 12, "width": 5.37128}, "input": "\\widehat{abcdefghijk}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.79556, "itemCount": 6, "width": 2.83427}, "input": "\\widehat{xyzwv}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.79556, "itemCount": 5, "width": 2.31367}, "input": "\\widehat{xyzw}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.79556, "itemCount": 4, "width": 1.57084}, "input": "\\widehat{xyz}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.79556, "itemCount": 6, "width": 2.8353}, "input": "\\widetilde{xyzwv}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.78156, "itemCount": 4, "width": 1.57084}, "input": "\\widetilde{xyz}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.0, "height": 0.68333, "itemCount": 4, "width": 2.69476}, "input": "\\xcancel{ABC}", "reason": "italic-combine"}
+{"displayList": {"depth": 0.19444, "height": 0.43056, "itemCount": 4, "width": 1.97084}, "input": "\\xcancel{xyz}", "reason": "italic-combine"}
 {"displayList": {"depth": 1.27767, "height": 1.6514, "itemCount": 5, "width": 1.44445}, "input": "\\bm{\\sum_{i=0}^n}", "reason": "limit-kerns"}
 {"displayList": {"depth": 0.7, "height": 0.68333, "itemCount": 4, "width": 3.29168}, "input": "\\ce{A \\underset{x}{=} B}", "reason": "limit-kerns"}
 {"displayList": {"depth": 0.7, "height": 0.68333, "itemCount": 2, "width": 0.775}, "input": "\\ce{\\underset{x}{Y}}", "reason": "limit-kerns"}
@@ -47,14 +122,8 @@
 {"displayList": {"depth": 1.57823, "height": 2.11223, "itemCount": 4, "width": 1.76391}, "input": "\\intop_0^1 f", "reason": "limit-kerns"}
 {"displayList": {"depth": 0.7, "height": 0.69444, "itemCount": 4, "width": 1.3889}, "input": "\\lim\\limits_x", "reason": "limit-kerns"}
 {"displayList": {"depth": 0.71711, "height": 0.75, "itemCount": 10, "width": 3.56328}, "input": "\\lim_{x \\to 0} f(x)", "reason": "limit-kerns"}
-{"displayList": {"depth": 0.89444, "height": 0.69444, "itemCount": 9, "width": 4.45994}, "input": "\\limsup_n x_n", "reason": "limit-kerns"}
 {"displayList": {"depth": 0.0, "height": 1.21667, "itemCount": 2, "width": 0.52859}, "input": "\\mathop{a}\\limits^b", "reason": "limit-kerns"}
 {"displayList": {"depth": 0.011, "height": 1.34422, "itemCount": 2, "width": 1.638}, "input": "\\mathrel{\\mathop{\\longrightarrow}\\limits^{f}}", "reason": "limit-kerns"}
-{"displayList": {"depth": 0.89444, "height": 0.75, "itemCount": 11, "width": 5.61172}, "input": "\\operatorname*{argmax}_x f(x)", "reason": "limit-kerns"}
-{"displayList": {"depth": 0.83611, "height": 0.65952, "itemCount": 6, "width": 2.68028}, "input": "\\operatorname*{asin}\\limits_y x", "reason": "limit-kerns"}
-{"displayList": {"depth": 0.7, "height": 0.43056, "itemCount": 4, "width": 1.97813}, "input": "\\operatorname*{max}_a", "reason": "limit-kerns"}
-{"displayList": {"depth": 0.89444, "height": 0.75, "itemCount": 11, "width": 5.45634}, "input": "\\operatornamewithlimits{argmin}_x f(x)", "reason": "limit-kerns"}
-{"displayList": {"depth": 0.83611, "height": 0.65952, "itemCount": 6, "width": 2.68028}, "input": "\\operatornamewithlimits{asin}\\limits_y x", "reason": "limit-kerns"}
 {"displayList": {"depth": 1.00556, "height": 1.59167, "itemCount": 3, "width": 0.66667}, "input": "\\smallint_a^b", "reason": "limit-kerns"}
 {"displayList": {"depth": 0.0, "height": 1.15298, "itemCount": 2, "width": 0.77778}, "input": "\\stackrel{!}{=}", "reason": "limit-kerns"}
 {"displayList": {"depth": 0.0, "height": 1.15298, "itemCount": 4, "width": 0.9139}, "input": "\\stackrel{\\text{def}}{=}", "reason": "limit-kerns"}
@@ -85,6 +154,16 @@
 {"displayList": {"depth": 1.30211, "height": 1.05001, "itemCount": 4, "width": 2.7948}, "input": "⨂_{k} L_k", "reason": "limit-kerns"}
 {"displayList": {"depth": 1.25001, "height": 1.05001, "itemCount": 4, "width": 2.58439}, "input": "⨄_{m} P_m", "reason": "limit-kerns"}
 {"displayList": {"depth": 1.25001, "height": 1.05001, "itemCount": 4, "width": 2.5385}, "input": "⨆_{n} Q_n", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.89444, "height": 0.69444, "itemCount": 9, "width": 4.26949}, "input": "\\limsup_n x_n", "reason": "limit-kerns+operatorname-upright"}
+{"displayList": {"depth": 0.89444, "height": 0.75, "itemCount": 11, "width": 5.366}, "input": "\\operatorname*{argmax}_x f(x)", "reason": "limit-kerns+operatorname-upright"}
+{"displayList": {"depth": 0.83611, "height": 0.66786, "itemCount": 6, "width": 2.46599}, "input": "\\operatorname*{asin}\\limits_y x", "reason": "limit-kerns+operatorname-upright"}
+{"displayList": {"depth": 0.7, "height": 0.43056, "itemCount": 4, "width": 1.86112}, "input": "\\operatorname*{max}_a", "reason": "limit-kerns+operatorname-upright"}
+{"displayList": {"depth": 0.89444, "height": 0.75, "itemCount": 11, "width": 5.17156}, "input": "\\operatornamewithlimits{argmin}_x f(x)", "reason": "limit-kerns+operatorname-upright"}
+{"displayList": {"depth": 0.83611, "height": 0.66786, "itemCount": 6, "width": 2.46599}, "input": "\\operatornamewithlimits{asin}\\limits_y x", "reason": "limit-kerns+operatorname-upright"}
+{"displayList": {"depth": 0.0, "height": 0.43056, "itemCount": 1, "width": 0.40889}, "input": "\\it z", "reason": "mathit-font"}
+{"displayList": {"depth": 0.0, "height": 0.69444, "itemCount": 4, "width": 2.41833}, "input": "\\mathit{AaBb}", "reason": "mathit-font"}
+{"displayList": {"depth": 0.0, "height": 0.69444, "itemCount": 3, "width": 1.66333}, "input": "\\mathit{Abc}", "reason": "mathit-font"}
+{"displayList": {"depth": 0.0, "height": 0.69444, "itemCount": 4, "width": 2.41833}, "input": "{\\it AaBb}", "reason": "mathit-font"}
 {"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 9, "width": 4.85902}, "input": "\\begin{cases} a & x > 0 \\\\ b & x < 0 \\end{cases}", "reason": "null-delimiter"}
 {"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 9, "width": 3.80798}, "input": "\\begin{cases} a &\\text{if } b \\\\ c &\\text{if } d \\end{cases}", "reason": "null-delimiter"}
 {"displayList": {"depth": 1.55002, "height": 2.05002, "itemCount": 11, "width": 3.34901}, "input": "\\begin{dcases} \\frac{a}{b} & x \\\\ c & y \\end{dcases}", "reason": "null-delimiter"}
@@ -99,5 +178,6 @@
 {"displayList": {"depth": 9.268, "height": 10.0, "itemCount": 2, "width": 1.095}, "input": "\\left.\\rule{1pt}{100pt}\\right)", "reason": "null-delimiter"}
 {"displayList": {"depth": 0.686, "height": 1.15, "itemCount": 4, "width": 1.55526}, "input": "\\left\\lbrace \\dfrac ab \\right.", "reason": "null-delimiter"}
 {"displayList": {"depth": 2.50676, "height": 3.00676, "itemCount": 44, "width": 9.90078}, "input": "\\left\\{\\begin{array}{l} \\nabla\\cdot\\vec{D} = \\rho \\\\ \\nabla\\cdot\\vec{B} = 0 \\\\ \\nabla\\times\\vec{E} = -\\frac{\\partial\\vec{B}}{\\partial t} \\\\ \\nabla\\times\\vec{H} = \\vec{J}_f + \\frac{\\partial\\vec{D}}{\\partial t} \\end{array}\\right.", "reason": "null-delimiter"}
+{"displayList": {"depth": 0.0, "height": 0.69444, "itemCount": 6, "width": 2.77225}, "input": "\\liminf", "reason": "operatorname-upright"}
 {"displayList": {"depth": 2.5398, "height": 3.0, "itemCount": 3, "width": 1.325}, "input": "{\\scriptstyle \\left( \\rule{1pt}{30pt} \\right)}", "reason": "relative-units"}
 {"displayList": {"depth": 1.41378, "height": 1.6514, "itemCount": 63, "width": 34.43413}, "input": "\\displaystyle {1 +  \\frac{q^2}{(1-q)}+\\frac{q^6}{(1-q)(1-q^2)}+\\cdots }= \\prod_{j=0}^{\\infty}\\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}, \\quad\\quad \\text{for }\\lvert q\\rvert<1.", "reason": "relative-units+limit-kerns+fraction-class"}

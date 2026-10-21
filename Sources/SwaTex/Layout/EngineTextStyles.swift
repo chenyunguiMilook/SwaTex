@@ -242,7 +242,7 @@ func layoutFont(_ font: String, _ body: ParseNode, _ options: LayoutOptions) -> 
         switch font {
         case "mathrm", "\\mathrm", "textrm", "\\textrm", "rm", "\\rm": .mainRegular
         case "mathbf", "\\mathbf", "textbf", "\\textbf", "bf", "\\bf": .mainBold
-        case "mathit", "\\mathit", "it", "\\it": .mathItalic
+        case "mathit", "\\mathit", "it", "\\it": .mainItalic  // KaTeX fontMap: Main-Italic
         case "textit", "\\textit", "\\emph": .mainItalic
         case "mathsf", "\\mathsf", "textsf", "\\textsf": .sansSerifRegular
         case "mathtt", "\\mathtt", "texttt", "\\texttt": .typewriterRegular
@@ -255,7 +255,14 @@ func layoutFont(_ font: String, _ body: ParseNode, _ options: LayoutOptions) -> 
         }
 
     if let fid = fontId {
-        return layoutWithFont(body, fid, options)
+        // KaTeX makeSymbol: `\mathit` glyphs carry no italic correction (text mode never does).
+        var opts = options
+        if fid == .mainItalic,
+            font == "mathit" || font == "\\mathit" || font == "it" || font == "\\it"
+        {
+            opts.suppressItalicCorrection = true
+        }
+        return layoutWithFont(body, fid, opts)
     }
     return layoutNode(body, options)
 }
@@ -266,12 +273,30 @@ func layoutWithFont(_ node: ParseNode, _ fontId: FontId, _ options: LayoutOption
         let kern = options.interGlyphKernEm
         var children: [LayoutBox] = []
         children.reserveCapacity(body.count * 2)
+        var keys: [ItalicCombineKey?] = []
+        // Atom spacing as in `layoutExpression` (`\mathrm{a+b}`, `\boldsymbol{x+\mu}`): a font
+        // changes the glyphs, not the math classes between them.
+        let classes = applyBinCancellation(body.map(nodeMathClass))
+        var prevClass: MathClass?
         for (i, n) in body.enumerated() {
             if i > 0, kern > 0 {
                 children.append(.kern(kern))
+                keys.append(nil)
             }
-            children.append(layoutWithFont(n, fontId, options))
+            if let p = prevClass, let c = classes[i] {
+                let mu = atomSpacing(p, c, tight: options.style.isTight)
+                if mu > 0 {
+                    children.append(.kern(muToEm(mu, quad: options.metrics.quad)))
+                    keys.append(nil)
+                }
+            }
+            if let c = classes[i] { prevClass = c }
+            let box = layoutWithFont(n, fontId, options)
+            children.append(box)
+            // `mord <font>` ords combine (KaTeX tryCombineChars); atoms are a bare mbin / mrel.
+            keys.append(fontOrdCombineKey(n, box))
         }
+        dropCombinedItalicCorrections(&children, keys: keys)
         return makeHBox(children)
 
     case let .supSub(base, sup, sub):
@@ -280,14 +305,21 @@ func layoutWithFont(_ node: ParseNode, _ fontId: FontId, _ options: LayoutOption
         }
         return layoutSupSub(base, sup, sub, options, fontId)
 
+    // KaTeX mathsym: a font command changes ords; atoms (`+`, `=`, `-`) keep Main-Regular — except
+    // under \boldsymbol, which sets them in Main-Bold (`boldsymbolFont`).
+    case .atom where fontId != .mathBoldItalic:
+        return layoutNode(node, options)
+
     case let .mathOrd(text), let .textOrd(text), let .atom(_, text):
         let ch = resolveSymbolChar(text, node.mode)
         let charCode = ch.value
         let metricCp = FontId.mathAlphanumeric(charCode)?.metric ?? charCode
+        let fontId = boldsymbolFont(fontId, node, metricCp)
         if let m = fontId.metrics(forChar: metricCp) {
             return LayoutBox(
                 // Text mode: no italic correction (it's a typographic hint for math sub/sup).
-                width: node.mode == .math ? m.width + m.italic : m.width,
+                width: node.mode == .math && !options.suppressItalicCorrection
+                    ? m.width + m.italic : m.width,
                 height: m.height,
                 depth: m.depth,
                 content: .glyph(fontId: fontId, charCode: charCode),
@@ -298,6 +330,25 @@ func layoutWithFont(_ node: ParseNode, _ fontId: FontId, _ options: LayoutOption
 
     default:
         return layoutNode(node, options)
+    }
+}
+
+/// KaTeX `boldsymbol()` / `mathsym`: under `\boldsymbol`, only math ords found in Math-BoldItalic
+/// use it; text ords (digits, punctuation) and atoms (`+`, `=`) are set in Main-Bold.
+@inline(never)
+func boldsymbolFont(_ fontId: FontId, _ node: ParseNode, _ metricCp: UInt32) -> FontId {
+    guard fontId == .mathBoldItalic else { return fontId }
+    if case .mathOrd = node.kind, fontId.metrics(forChar: metricCp) != nil { return fontId }
+    return FontId.mainBold.metrics(forChar: metricCp) != nil ? .mainBold : fontId
+}
+
+/// An ord inside a font group (KaTeX classes `mord mathrm` etc.).
+@inline(never)
+func fontOrdCombineKey(_ node: ParseNode, _ box: LayoutBox) -> ItalicCombineKey? {
+    guard node.mode == .math else { return nil }
+    switch node.kind {
+    case .mathOrd, .textOrd: return italicCombineKey(box)
+    default: return nil
     }
 }
 

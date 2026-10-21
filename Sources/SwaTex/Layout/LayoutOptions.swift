@@ -24,6 +24,8 @@ public struct LayoutOptions: Sendable {
     /// second (stretch) layout pass so adversarially nested `\middle`
     /// groups degrade instead of doing exponential work.
     var middlePassDepth: Int = 0
+    /// Inside `\mathit`: glyphs carry no italic correction (KaTeX makeSymbol).
+    var suppressItalicCorrection = false
 
     public init(
         style: MathStyle = .display,

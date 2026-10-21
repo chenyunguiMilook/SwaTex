@@ -117,6 +117,8 @@ func layoutExpression(
     var prevClass: MathClass?
     // Index of the last node that contributed `prevClass` (for `\middle` glue suppression).
     var prevClassNodeIdx: Int?
+    // Whether the last child is a mathnormal glyph the next one could combine with.
+    var combine = ItalicCombineState()
 
     for (i, node) in nodes.enumerated() {
         // No `??` here: its autoclosure adds measurable stack per recursion
@@ -149,7 +151,7 @@ func layoutExpression(
             prevClassNodeIdx = i
         }
 
-        children.append(lbox)
+        appendCombiningItalics(lbox, node, to: &children, &combine)
     }
 
     return makeHBox(children)

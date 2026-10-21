@@ -41,14 +41,14 @@ out of tolerance.
 |---|---|---|---|
 | SwaTex 0.5.0 | 2149 | 1460 | 689 |
 | + aligned column gaps + null delimiters (0.5.0-vectorshop.1) | 2149 | 1488 | 661 |
-| + operator-limit kerns, `\frac` as Ord, script-style units | 2149 | 1525 | 624 |
+| + operator-limit kerns, `\frac` as Ord, script-style units (0.5.0-vectorshop.2) | 2149 | 1525 | 624 |
+| + italic-correction runs, upright `\operatorname*`, `\mathit` / font-group atoms | 2149 | 1580 | 569 |
 
 The hand-picked `corpus.txt` (textbook formulas and every array environment): 12 → 21 → 25 of 27.
-No formula got further from KaTeX at either step.
+No formula got further from KaTeX at any step.
 
 Remaining out-of-tolerance formulas, roughly grouped (not yet triaged; some may be measurement
 artifacts): mhchem · rules only (`\hline` / fraction line y, ~0.02 em) · font choice
-(`\boldsymbol` / `\bm` binary operators; **`\limsup`, `\operatorname*{…}` and
-`\operatornamewithlimits` letters set in Math-Italic where KaTeX uses Main-Regular**) · CD ·
+(symbols KaTeX takes from another face) · CD · `\varinjlim` / `\varprojlim` limits 0.26 em low ·
 `\text` with accents / unicode · `\mathop{X}_a^b` and `\mathclap` under limits · stacked
 delimiters · `\rule{1ex}` in a superscript 0.0175 em too wide.
