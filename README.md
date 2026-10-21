@@ -190,7 +190,12 @@ between the engines. Every number is reproducible with the commands in
   `cases` is 0.12em wider); operator limits use KaTeX's kerns without
   RaTeX's extra 0.08em; `\frac` is an Ord (no thin space in `-\frac{a}{b}`);
   `em` / `ex` inside script styles are text-style units and absolute units
-  stay absolute (KaTeX `calculateSize`). The golden corpora stay RaTeX's output; these
+  stay absolute (KaTeX `calculateSize`); adjacent letters combine like
+  KaTeX's `tryCombineChars` and keep only the last italic correction (`PV`,
+  `\mathrm{inf}`); `\operatorname*` / `\limsup` are upright; `\mathit` is
+  Main-Italic without corrections; font commands keep atoms (`+`, `=`) in
+  Main-Regular with their spacing (`\boldsymbol` sets them bold); only a
+  single-symbol base shifts its subscript by its correction. The golden corpora stay RaTeX's output; these
   inputs are listed with their KaTeX-checked values in
   `Tests/SwaTexTests/Resources/golden/katex_divergences.jsonl`.
 - `scripts/katex_diff` compares glyph positions against KaTeX itself

@@ -109,17 +109,22 @@ func buildOpBase(
 func layoutOpText(_ name: String, _ options: LayoutOptions) -> LayoutBox {
     let text = name.hasPrefix("\\") ? String(name.dropFirst()) : name
     var children: [LayoutBox] = []
+    var keys: [ItalicCombineKey?] = []
     for ch in text.unicodeScalars {
         let charCode = ch.value
         let metrics = FontId.mainRegular.metrics(forChar: charCode)
+        // As `layoutOperatorName`: \inf, \sin… are one combined mathrm run in KaTeX, so the name
+        // ends with its last letter's italic correction (`\inf`'s f).
         let (width, height, depth) =
-            metrics.map { ($0.width, $0.height, $0.depth) } ?? (0.5, 0.43, 0.0)
-        children.append(
-            LayoutBox(
-                width: width, height: height, depth: depth,
-                content: .glyph(fontId: .mainRegular, charCode: charCode),
-                color: options.color))
+            metrics.map { ($0.width + $0.italic, $0.height, $0.depth) } ?? (0.5, 0.43, 0.0)
+        let box = LayoutBox(
+            width: width, height: height, depth: depth,
+            content: .glyph(fontId: .mainRegular, charCode: charCode),
+            color: options.color)
+        children.append(box)
+        keys.append(italicCombineKey(box))
     }
+    dropCombinedItalicCorrections(&children, keys: keys)
     return makeHBox(children)
 }
 
@@ -161,7 +166,15 @@ func layoutOpWithLimits(
         return layoutSupSub(baseNode, supNode, subNode, options, nil)
     }
 
-    let (baseBox, slant) = buildOpBase(name, symbol, body, options)
+    // `\operatorname*{…}` (and `\limsup`, `\operatornamewithlimits`, which expand to it) sets its
+    // name upright like `\operatorname` does — KaTeX builds both through operatorname.js. Laying
+    // the body out as a plain expression put every letter in Math-Italic.
+    let (baseBox, slant): (LayoutBox, Double)
+    if case let .operatorName(b, _, _, _) = baseNode.kind {
+        (baseBox, slant) = (layoutOperatorName(b, options), 0)
+    } else {
+        (baseBox, slant) = buildOpBase(name, symbol, body, options)
+    }
     // baseShift only applies to symbol operators (KaTeX: base instanceof SymbolNode)
     let baseShift =
         symbol && !suppressBaseShift ? computeOpBaseShift(baseBox, options) : 0.0
@@ -253,22 +266,28 @@ func layoutOpLimitsInner(
 /// Lay out \operatorname body as roman text.
 func layoutOperatorName(_ body: [ParseNode], _ options: LayoutOptions) -> LayoutBox {
     var children: [LayoutBox] = []
+    var keys: [ItalicCombineKey?] = []
     for node in body {
         switch node.kind {
         case let .mathOrd(text), let .textOrd(text):
             let ch = text.unicodeScalars.first ?? "?"
             let charCode = ch.value
             let metrics = FontId.mainRegular.metrics(forChar: charCode)
+            // KaTeX sets the name in `mathrm`: each glyph carries its italic correction, and
+            // tryCombineChars keeps only the last of a run (`inf` gets the f's, `ff` only one).
             let (width, height, depth) =
-                metrics.map { ($0.width, $0.height, $0.depth) } ?? (0.5, 0.43, 0.0)
-            children.append(
-                LayoutBox(
-                    width: width, height: height, depth: depth,
-                    content: .glyph(fontId: .mainRegular, charCode: charCode),
-                    color: options.color))
+                metrics.map { ($0.width + $0.italic, $0.height, $0.depth) } ?? (0.5, 0.43, 0.0)
+            let box = LayoutBox(
+                width: width, height: height, depth: depth,
+                content: .glyph(fontId: .mainRegular, charCode: charCode),
+                color: options.color)
+            children.append(box)
+            keys.append(italicCombineKey(box))
         default:
             children.append(layoutNode(node, options))
+            keys.append(nil)
         }
     }
+    dropCombinedItalicCorrections(&children, keys: keys)
     return makeHBox(children)
 }
