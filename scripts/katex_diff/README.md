@@ -21,7 +21,9 @@ node katex_diff.mjs --layoutdump ../../.build/release/LayoutDump \
 ```
 
 `--tol` (em, default 0.01), `--only <regex>`, `--show <n>` (worst diffs to print), `--out` (full JSON
-report). Exit status 1 when any compared formula is out of tolerance.
+report), `--dump-katex` (print KaTeX's own box, glyph and rule positions — where the numbers in
+`KaTeXAlignmentTests` / `KaTeXSpacingTests` come from). Exit status 1 when any compared formula is
+out of tolerance.
 
 ## What it cannot see
 
@@ -38,12 +40,15 @@ report). Exit status 1 when any compared formula is out of tolerance.
 | | compared | within tol | out of tol |
 |---|---|---|---|
 | SwaTex 0.5.0 | 2149 | 1460 | 689 |
-| + aligned column gaps + null delimiters | 2149 | 1488 | 661 |
+| + aligned column gaps + null delimiters (0.5.0-vectorshop.1) | 2149 | 1488 | 661 |
+| + operator-limit kerns, `\frac` as Ord, script-style units | 2149 | 1525 | 624 |
 
-The hand-picked `corpus.txt` (textbook formulas and every array environment) went from 12 to 21 of 27.
+The hand-picked `corpus.txt` (textbook formulas and every array environment): 12 → 21 → 25 of 27.
+No formula got further from KaTeX at either step.
 
 Remaining out-of-tolerance formulas, roughly grouped (not yet triaged; some may be measurement
-artifacts): mhchem 132 · rules only (`\hline` / fraction line y, ~0.02 em) 118 · font choice
-(`\boldsymbol` / `\bm` binary operators, symbols KaTeX takes from another face) 78 · CD 40 ·
-`\text` with accents / unicode 48 · limits placed 0.08 em further out (`\sum`, `\lim`) 19 ·
-`-\frac` gets a thin space KaTeX does not add · 215 other (mostly stacked delimiters).
+artifacts): mhchem · rules only (`\hline` / fraction line y, ~0.02 em) · font choice
+(`\boldsymbol` / `\bm` binary operators; **`\limsup`, `\operatorname*{…}` and
+`\operatornamewithlimits` letters set in Math-Italic where KaTeX uses Main-Regular**) · CD ·
+`\text` with accents / unicode · `\mathop{X}_a^b` and `\mathclap` under limits · stacked
+delimiters · `\rule{1ex}` in a superscript 0.0175 em too wide.

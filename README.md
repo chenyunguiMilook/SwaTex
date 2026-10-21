@@ -187,7 +187,10 @@ between the engines. Every number is reproducible with the commands in
   `pregap`/`postgap` (no space inside an `rl` pair, 1em between pairs,
   relations keep their full spacing) instead of one uniform 3mu gap;
   `\left.` / `\right.` / `\middle.` take `\nulldelimiterspace` (so
-  `cases` is 0.12em wider). The golden corpora stay RaTeX's output; these
+  `cases` is 0.12em wider); operator limits use KaTeX's kerns without
+  RaTeX's extra 0.08em; `\frac` is an Ord (no thin space in `-\frac{a}{b}`);
+  `em` / `ex` inside script styles are text-style units and absolute units
+  stay absolute (KaTeX `calculateSize`). The golden corpora stay RaTeX's output; these
   inputs are listed with their KaTeX-checked values in
   `Tests/SwaTexTests/Resources/golden/katex_divergences.jsonl`.
 - `scripts/katex_diff` compares glyph positions against KaTeX itself

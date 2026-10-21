@@ -161,28 +161,23 @@ func layoutOpWithLimits(
         return layoutSupSub(baseNode, supNode, subNode, options, nil)
     }
 
-    // KaTeX-exact limit kerning (no +0.08em) for `\overset`/`\underset` only
-    // (`suppressBaseShift`).
-    let legacyLimitKernPadding = !suppressBaseShift
-
     let (baseBox, slant) = buildOpBase(name, symbol, body, options)
     // baseShift only applies to symbol operators (KaTeX: base instanceof SymbolNode)
     let baseShift =
         symbol && !suppressBaseShift ? computeOpBaseShift(baseBox, options) : 0.0
 
-    return layoutOpLimitsInner(
-        baseBox, supNode, subNode, slant, baseShift, legacyLimitKernPadding, options)
+    return layoutOpLimitsInner(baseBox, supNode, subNode, slant, baseShift, options)
 }
 
 /// Assemble an operator with limits above/below (KaTeX's `assembleSupSub`).
 ///
-/// `legacyLimitKernPadding`: +0.08em on limit kerns for all ops except
-/// `\overset`/`\underset` (`.op(suppressBaseShift: true)`), matching KaTeX on
-/// `\dddot`/`\ddddot` PNGs.
+/// The limit kerns are KaTeX's exactly: `max(bigOpSpacing1, bigOpSpacing3 − sup.depth)` above and
+/// `max(bigOpSpacing2, bigOpSpacing4 − sub.height)` below, with the limit's height and depth in
+/// this style's em (KaTeX's `buildGroup` rescales a child built at another size). RaTeX added
+/// 0.08em to both, which put `\sum` / `\lim` limits 0.08em too far out.
 func layoutOpLimitsInner(
     _ base: LayoutBox, _ supNode: ParseNode?, _ subNode: ParseNode?,
-    _ slant: Double, _ baseShift: Double, _ legacyLimitKernPadding: Bool,
-    _ options: LayoutOptions
+    _ slant: Double, _ baseShift: Double, _ options: LayoutOptions
 ) -> LayoutBox {
     let metrics = options.metrics
     let supStyle = options.style.superscript
@@ -191,24 +186,15 @@ func layoutOpLimitsInner(
     let supRatio = supStyle.sizeMultiplier / options.style.sizeMultiplier
     let subRatio = subStyle.sizeMultiplier / options.style.sizeMultiplier
 
-    let extraKern = legacyLimitKernPadding ? 0.08 : 0.0
-
     let supData: (elem: LayoutBox, kern: Double)? = supNode.map { s in
         let elem = layoutNode(s, options.with(style: supStyle))
-        // `\overset`/`\underset`: KaTeX `assembleSupSub` uses `elem.depth` as-is. Other
-        // limits (e.g. `\lim\limits_x`) keep the legacy `depth * supRatio` term so ink
-        // scores stay aligned with our KaTeX PNG fixtures.
-        let d = legacyLimitKernPadding ? elem.depth * supRatio : elem.depth
-        let kern = max(
-            metrics.bigOpSpacing1 + extraKern, metrics.bigOpSpacing3 - d + extraKern)
+        let kern = max(metrics.bigOpSpacing1, metrics.bigOpSpacing3 - elem.depth * supRatio)
         return (elem, kern)
     }
 
     let subData: (elem: LayoutBox, kern: Double)? = subNode.map { s in
         let elem = layoutNode(s, options.with(style: subStyle))
-        let h = legacyLimitKernPadding ? elem.height * subRatio : elem.height
-        let kern = max(
-            metrics.bigOpSpacing2 + extraKern, metrics.bigOpSpacing4 - h + extraKern)
+        let kern = max(metrics.bigOpSpacing2, metrics.bigOpSpacing4 - elem.height * subRatio)
         return (elem, kern)
     }
 
