@@ -5,8 +5,11 @@ import Foundation
 /// for byte, so they can be regenerated; for an input listed here the golden tests expect this
 /// display-list summary instead.
 ///
-/// Every entry was checked against KaTeX 0.16.22 with `scripts/katex_diff` (glyph positions, not
-/// just the box). The KaTeX numbers themselves are pinned by `KaTeXAlignmentTests`.
+/// `reason` names the fix that moved it (align-column-gaps, null-delimiter, limit-kerns,
+/// fraction-class, relative-units). Each was checked with `scripts/katex_diff`: none is further
+/// from KaTeX 0.16.22 than RaTeX's value, and most now match it to 0.01em (the rest differ for
+/// unrelated reasons listed in that script's README). KaTeX's numbers themselves are pinned by
+/// `KaTeXAlignmentTests` and `KaTeXSpacingTests`.
 enum KaTeXDivergences {
     struct Entry: Decodable {
         struct DL: Decodable, Equatable {

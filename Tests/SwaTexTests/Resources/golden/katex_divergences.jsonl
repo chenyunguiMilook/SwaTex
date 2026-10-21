@@ -36,6 +36,55 @@
 {"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 9, "width": 4.14701}, "input": "\\begin{equation*} \\begin{split} a &=b+c\\\\ &=e+f \\end{split} \\end{equation*}", "reason": "align-column-gaps"}
 {"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 8, "width": 4.57247}, "input": "\\begin{equation} \\begin{split} a &= b \\\\ &= c \\end{split} \\end{equation}", "reason": "align-column-gaps"}
 {"displayList": {"depth": 1.25, "height": 1.75, "itemCount": 5, "width": 2.29469}, "input": "\\begin{split} a &= b \\\\ &= c \\end{split}", "reason": "align-column-gaps"}
+{"displayList": {"depth": 0.32222, "height": 0.595, "itemCount": 5, "width": 1.08097}, "input": "\\genfrac{\\lbrace}{\\rbrace}{1pt}{2}{a}{b}", "reason": "fraction-class"}
+{"displayList": {"depth": 1.27767, "height": 1.6514, "itemCount": 5, "width": 1.44445}, "input": "\\bm{\\sum_{i=0}^n}", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.7, "height": 0.68333, "itemCount": 4, "width": 3.29168}, "input": "\\ce{A \\underset{x}{=} B}", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.7, "height": 0.68333, "itemCount": 2, "width": 0.775}, "input": "\\ce{\\underset{x}{Y}}", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.26711, "height": 1.6514, "itemCount": 3, "width": 1.44445}, "input": "\\displaystyle\\sum_0^n", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.41378, "height": 1.05001, "itemCount": 11, "width": 3.56641}, "input": "\\displaystyle\\sum_{\\mathclap{1\\le i\\le j\\le n}} x_{ij}", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.57823, "height": 2.11223, "itemCount": 4, "width": 1.76391}, "input": "\\int\\limits_0^1 f", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.57823, "height": 2.11223, "itemCount": 3, "width": 1.00001}, "input": "\\intop\\limits_0^1", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.57823, "height": 2.11223, "itemCount": 4, "width": 1.76391}, "input": "\\intop_0^1 f", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.7, "height": 0.69444, "itemCount": 4, "width": 1.3889}, "input": "\\lim\\limits_x", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.71711, "height": 0.75, "itemCount": 10, "width": 3.56328}, "input": "\\lim_{x \\to 0} f(x)", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.89444, "height": 0.69444, "itemCount": 9, "width": 4.45994}, "input": "\\limsup_n x_n", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.0, "height": 1.21667, "itemCount": 2, "width": 0.52859}, "input": "\\mathop{a}\\limits^b", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.011, "height": 1.34422, "itemCount": 2, "width": 1.638}, "input": "\\mathrel{\\mathop{\\longrightarrow}\\limits^{f}}", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.89444, "height": 0.75, "itemCount": 11, "width": 5.61172}, "input": "\\operatorname*{argmax}_x f(x)", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.83611, "height": 0.65952, "itemCount": 6, "width": 2.68028}, "input": "\\operatorname*{asin}\\limits_y x", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.7, "height": 0.43056, "itemCount": 4, "width": 1.97813}, "input": "\\operatorname*{max}_a", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.89444, "height": 0.75, "itemCount": 11, "width": 5.45634}, "input": "\\operatornamewithlimits{argmin}_x f(x)", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.83611, "height": 0.65952, "itemCount": 6, "width": 2.68028}, "input": "\\operatornamewithlimits{asin}\\limits_y x", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.00556, "height": 1.59167, "itemCount": 3, "width": 0.66667}, "input": "\\smallint_a^b", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.0, "height": 1.15298, "itemCount": 2, "width": 0.77778}, "input": "\\stackrel{!}{=}", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.0, "height": 1.15298, "itemCount": 4, "width": 0.9139}, "input": "\\stackrel{\\text{def}}{=}", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.0, "height": 1.20009, "itemCount": 2, "width": 0.77778}, "input": "\\stackrel{f}{=}", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.40367, "height": 1.05001, "itemCount": 3, "width": 2.18265}, "input": "\\sum_{\\begin{subarray}c i \\end{subarray}} x", "reason": "limit-kerns"}
+{"displayList": {"depth": 2.00144, "height": 1.05001, "itemCount": 4, "width": 2.18265}, "input": "\\sum_{\\begin{subarray}{l} i \\\\ j \\end{subarray}} x", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.37285, "height": 1.05001, "itemCount": 8, "width": 2.80168}, "input": "\\sum_{\\mathclap{1\\le i\\le n}} x_{i}", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.99133, "height": 1.05001, "itemCount": 13, "width": 3.12956}, "input": "\\sum_{\\substack{0\\le i\\le n \\\\ i\\text{ even}}} x_i", "reason": "limit-kerns"}
+{"displayList": {"depth": 2.02588, "height": 1.05001, "itemCount": 8, "width": 2.18265}, "input": "\\sum_{\\substack{i<j \\\\ k>l}} x", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.96711, "height": 1.3514, "itemCount": 5, "width": 1.31461}, "input": "\\textstyle\\sum\\limits_{n=1}^{\\infty}", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.7, "height": 0.69444, "itemCount": 2, "width": 0.42917}, "input": "\\underset{a}{b}", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.482, "height": 0.69444, "itemCount": 7, "width": 2.59726}, "input": "\\varinjlim_n x_n", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.88, "height": 0.69444, "itemCount": 7, "width": 2.59726}, "input": "\\varliminf_n x_n", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.30211, "height": 1.6514, "itemCount": 6, "width": 1.99965}, "input": "∏_{k=1}^{n} k", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.27767, "height": 1.05001, "itemCount": 4, "width": 2.3488}, "input": "∐_i S_i", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.26711, "height": 1.82834, "itemCount": 6, "width": 2.55373}, "input": "∑_{m=1}^{M} m", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.0, "height": 0.94465, "itemCount": 2, "width": 0.77778}, "input": "≙", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.0, "height": 0.94465, "itemCount": 2, "width": 0.77778}, "input": "≚", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.0, "height": 0.99257, "itemCount": 2, "width": 0.77778}, "input": "≛", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.0, "height": 1.01409, "itemCount": 4, "width": 0.77778}, "input": "≝", "reason": "limit-kerns"}
+{"displayList": {"depth": 0.0, "height": 1.01409, "itemCount": 2, "width": 0.77778}, "input": "≟", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.27767, "height": 1.6514, "itemCount": 7, "width": 2.2476}, "input": "⋀_{i=1}^n \\varphi_i", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.41378, "height": 1.05001, "itemCount": 4, "width": 2.3075}, "input": "⋁_{j} \\psi_j", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.25001, "height": 1.05001, "itemCount": 4, "width": 2.43072}, "input": "⋂_{n} U_n", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.25001, "height": 1.05001, "itemCount": 4, "width": 2.36149}, "input": "⋃_{\\alpha} V_{\\alpha}", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.27767, "height": 1.6514, "itemCount": 7, "width": 2.75519}, "input": "⨀_{i=1}^r G_i", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.41378, "height": 1.05001, "itemCount": 4, "width": 2.88737}, "input": "⨁_{j} H_j", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.30211, "height": 1.05001, "itemCount": 4, "width": 2.7948}, "input": "⨂_{k} L_k", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.25001, "height": 1.05001, "itemCount": 4, "width": 2.58439}, "input": "⨄_{m} P_m", "reason": "limit-kerns"}
+{"displayList": {"depth": 1.25001, "height": 1.05001, "itemCount": 4, "width": 2.5385}, "input": "⨆_{n} Q_n", "reason": "limit-kerns"}
 {"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 9, "width": 4.85902}, "input": "\\begin{cases} a & x > 0 \\\\ b & x < 0 \\end{cases}", "reason": "null-delimiter"}
 {"displayList": {"depth": 1.25003, "height": 1.75, "itemCount": 9, "width": 3.80798}, "input": "\\begin{cases} a &\\text{if } b \\\\ c &\\text{if } d \\end{cases}", "reason": "null-delimiter"}
 {"displayList": {"depth": 1.55002, "height": 2.05002, "itemCount": 11, "width": 3.34901}, "input": "\\begin{dcases} \\frac{a}{b} & x \\\\ c & y \\end{dcases}", "reason": "null-delimiter"}
@@ -50,3 +99,5 @@
 {"displayList": {"depth": 9.268, "height": 10.0, "itemCount": 2, "width": 1.095}, "input": "\\left.\\rule{1pt}{100pt}\\right)", "reason": "null-delimiter"}
 {"displayList": {"depth": 0.686, "height": 1.15, "itemCount": 4, "width": 1.55526}, "input": "\\left\\lbrace \\dfrac ab \\right.", "reason": "null-delimiter"}
 {"displayList": {"depth": 2.50676, "height": 3.00676, "itemCount": 44, "width": 9.90078}, "input": "\\left\\{\\begin{array}{l} \\nabla\\cdot\\vec{D} = \\rho \\\\ \\nabla\\cdot\\vec{B} = 0 \\\\ \\nabla\\times\\vec{E} = -\\frac{\\partial\\vec{B}}{\\partial t} \\\\ \\nabla\\times\\vec{H} = \\vec{J}_f + \\frac{\\partial\\vec{D}}{\\partial t} \\end{array}\\right.", "reason": "null-delimiter"}
+{"displayList": {"depth": 2.5398, "height": 3.0, "itemCount": 3, "width": 1.325}, "input": "{\\scriptstyle \\left( \\rule{1pt}{30pt} \\right)}", "reason": "relative-units"}
+{"displayList": {"depth": 1.41378, "height": 1.6514, "itemCount": 63, "width": 34.43413}, "input": "\\displaystyle {1 +  \\frac{q^2}{(1-q)}+\\frac{q^6}{(1-q)(1-q^2)}+\\cdots }= \\prod_{j=0}^{\\infty}\\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}, \\quad\\quad \\text{for }\\lvert q\\rvert<1.", "reason": "relative-units+limit-kerns+fraction-class"}

@@ -16,6 +16,7 @@
 //   --corpus  one formula per line            --golden  the *.jsonl golden files ("input" keys)
 //   --tol     em; a formula passes when every glyph/rule and the box are within it
 //   --only    keep formulas matching this regex
+//   --dump-katex  also print KaTeX's own measurements (box, glyphs, rules) for every formula
 //
 // Left out: formulas with \tag (KaTeX pushes the tag to the far edge of the page, SwaTex sets it a
 // quad after the body — a layout convention, not a metric) and \url / \href (KaTeX renders link
@@ -49,6 +50,7 @@ const tol = Number(opt("--tol", "0.01"));
 const only = opt("--only") ? new RegExp(opt("--only")) : null;
 const show = Number(opt("--show", "30"));
 const outPath = opt("--out");
+const dumpKaTeX = args.includes("--dump-katex");
 const chrome = opt("--chrome", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome");
 if (!layoutDump || (!corpusPath && !goldenDir)) {
     console.error("usage: katex_diff.mjs --layoutdump <bin> (--corpus <file> | --golden <dir>) [--tol 0.01] [--only re] [--show 30] [--out report.json]");
@@ -233,6 +235,19 @@ if (!m || !m[1]) {
     process.exit(2);
 }
 const katexById = new Map(JSON.parse(Buffer.from(m[1], "base64").toString("utf8")).map((r) => [r.i, r]));
+
+if (dumpKaTeX) {
+    for (const [i, tex] of formulas.entries()) {
+        const k = katexById.get(i);
+        if (!k) continue;
+        const r4 = (v) => Math.round(v * 1e4) / 1e4;
+        console.log(`KaTeX ${tex}\n  box w ${r4(k.width)} h ${r4(k.height)} d ${r4(k.depth)}`);
+        for (const g of k.glyphs.filter((g) => ![0x20, 0xa0, 0x200b].includes(g.ch))) {
+            console.log(`  ${String.fromCodePoint(g.ch)} x ${r4(g.x)} y ${r4(g.y)} size ${r4(g.s)}`);
+        }
+        for (const r of k.rules) console.log(`  rule x ${r4(r.x)} y ${r4(r.y)} w ${r4(r.w)}`);
+    }
+}
 
 // ── Compare ────────────────────────────────────────────────────────────────
 

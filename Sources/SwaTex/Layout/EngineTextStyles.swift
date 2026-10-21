@@ -497,11 +497,26 @@ func layoutSpacingCommand(_ text: String, _ options: LayoutOptions) -> LayoutBox
 // ============================================================================
 
 func measurementToEm(_ m: Measurement, _ options: LayoutOptions) -> Double {
+    // KaTeX units.js `calculateSize`, in the current style's em (the unit of every box here):
+    // `mu` scales with the style; `em` / `ex` always refer to the *text*-style font at this size,
+    // so `x^{\kern1em}` is one text em wide, not one script em; absolute units are absolute.
     let metrics = options.metrics
-    return switch m.unit {
-    case "em": m.number
-    case "ex": m.number * metrics.xHeight
-    case "mu": m.number * metrics.cssEmPerMu
+    switch m.unit {
+    case "mu":
+        return m.number * metrics.cssEmPerMu
+    case "em", "ex":
+        let unitStyle = options.style.isTight ? options.style.textEquivalent : options.style
+        let unitMetrics = MathConstants.forSize(unitStyle.sizeIndex)
+        let perUnit = m.unit == "em" ? unitMetrics.quad : unitMetrics.xHeight
+        return m.number * perUnit * unitStyle.sizeMultiplier / options.sizeMultiplier
+    default:
+        return absoluteMeasurementToEm(m, metrics) / options.sizeMultiplier
+    }
+}
+
+/// An absolute unit (pt, mm, …) in text-size em.
+private func absoluteMeasurementToEm(_ m: Measurement, _ metrics: MathConstants) -> Double {
+    switch m.unit {
     case "pt": m.number / metrics.ptPerEm
     case "mm": m.number * 7227.0 / 2540.0 / metrics.ptPerEm
     case "cm": m.number * 7227.0 / 254.0 / metrics.ptPerEm
@@ -532,12 +547,11 @@ func nodeMathClass(_ node: ParseNode) -> MathClass? {
         return .op
     case .ordGroup:
         return .ord
-    // KaTeX genfrac.js: with delimiters (e.g. \binom) → mord; without (e.g. \frac) → minner.
-    case let .genfrac(_, _, _, _, leftDelim, rightDelim, _):
-        let hasDelim =
-            leftDelim.map { !$0.isEmpty && $0 != "." } ?? false
-            || rightDelim.map { !$0.isEmpty && $0 != "." } ?? false
-        return hasDelim ? .ord : .inner
+    // KaTeX genfrac.js wraps every fraction in a `mord` span, delimiters or not (as TeX's braced
+    // `{a \over b}` is an Ord). RaTeX made `\frac` Inner, which put a thin space between it and a
+    // neighboring Ord in display style (`-\frac{a}{b}`, `a\frac{b}{c}`).
+    case .genfrac:
+        return .ord
     case .sqrt:
         return .ord
     case let .supSub(base, _, _):
