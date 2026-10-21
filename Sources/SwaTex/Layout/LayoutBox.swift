@@ -184,6 +184,40 @@ public indirect enum BoxContent: Sendable {
     case degraded
 }
 
+extension ArrayLayout {
+    // Column geometry for `emitBox`. Functions of their own, never inlined: `emitBox` is one
+    // recursive function for every box kind, every nesting level pays for its whole frame, and
+    // doing this arithmetic inline grows it enough to truncate 30 nested groups on a 512 KB thread
+    // in a debug build (`StackGuardTests.moderateNestingStillParses`).
+
+    /// x of column boundary `i` (0 = left edge of the grid): the first `i` columns with the gaps on
+    /// both of their sides; plus column `i`'s left gap when `includingLeftGap` (= where its cell
+    /// area starts).
+    @inline(never)
+    func columnBoundaryX(_ i: Int, includingLeftGap: Bool = false) -> Double {
+        var x = 0.0
+        for j in 0..<min(i, colWidths.count) {
+            x += colGapsBefore[j] + colWidths[j] + colGapsAfter[j]
+        }
+        if includingLeftGap, i < colGapsBefore.count {
+            x += colGapsBefore[i]
+        }
+        return x
+    }
+
+    /// Space from the right edge of column `c` to the left edge of column `c + 1`.
+    @inline(never)
+    func gapBetweenColumns(_ c: Int) -> Double {
+        colGapsAfter[c] + colGapsBefore[c + 1]
+    }
+
+    /// Padding after the last column (0 unless hskipBeforeAndAfter).
+    @inline(never)
+    func trailingGap() -> Double {
+        colGapsAfter.last ?? 0.0
+    }
+}
+
 /// Layout data for a matrix/array, grouped because of its many fields.
 public struct ArrayLayout: Sendable {
     public var cells: [[LayoutBox]]
@@ -192,11 +226,18 @@ public struct ArrayLayout: Sendable {
     public var colAligns: [Character]
     public var rowHeights: [Double]
     public var rowDepths: [Double]
+    /// Default space between two columns (2 × arraycolsep), em. Columns may override their
+    /// half of it — see `colGapsBefore` / `colGapsAfter`, which positioning uses.
     public var colGap: Double
     public var offset: Double
-    /// Extra x padding before the first column (= arraycolsep when
-    /// hskipBeforeAndAfter is true).
+    /// Extra x padding before the first column (= `colGapsBefore[0]`).
     public var contentXOffset: Double
+    /// Space left of each column (em): its `pregap`, else arraycolsep; 0 before the first column
+    /// unless hskipBeforeAndAfter.
+    public var colGapsBefore: [Double]
+    /// Space right of each column (em): its `postgap`, else arraycolsep; 0 after the last column
+    /// unless hskipBeforeAndAfter.
+    public var colGapsAfter: [Double]
     /// For each column boundary (0 = before col 0, ..., numCols = after last
     /// col), the vertical rule separator type: nil = no rule,
     /// false = solid '|', true = dashed ':'.
@@ -223,7 +264,8 @@ public struct ArrayLayout: Sendable {
     public init(
         cells: [[LayoutBox]], colWidths: [Double], colAligns: [Character],
         rowHeights: [Double], rowDepths: [Double], colGap: Double, offset: Double,
-        contentXOffset: Double = 0, colSeparators: [Bool?] = [],
+        contentXOffset: Double = 0, colGapsBefore: [Double]? = nil,
+        colGapsAfter: [Double]? = nil, colSeparators: [Bool?] = [],
         hlinesBeforeRow: [[Bool]] = [], ruleThickness: Double = 0.04,
         doubleRuleSep: Double = 0.2, arrayInnerWidth: Double = 0,
         tagGapEm: Double = 0, tagColWidth: Double = 0, rowTags: [LayoutBox?] = [],
@@ -237,6 +279,13 @@ public struct ArrayLayout: Sendable {
         self.colGap = colGap
         self.offset = offset
         self.contentXOffset = contentXOffset
+        // Without explicit per-column gaps: colGap split evenly between neighbors, contentXOffset
+        // outside the grid.
+        let n = colWidths.count
+        self.colGapsBefore =
+            colGapsBefore ?? (0..<n).map { $0 == 0 ? contentXOffset : colGap / 2.0 }
+        self.colGapsAfter =
+            colGapsAfter ?? (0..<n).map { $0 == n - 1 ? contentXOffset : colGap / 2.0 }
         self.colSeparators = colSeparators
         self.hlinesBeforeRow = hlinesBeforeRow
         self.ruleThickness = ruleThickness

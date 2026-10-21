@@ -20,7 +20,9 @@ import Testing
 /// (unterminated `\verb`, `x\limits^2` — now errors; `\vcenter` depths —
 /// now axis-centered ink). They are pinned by LayoutFixRegressionTests /
 /// ParserSpecTests / HardeningTests; regeneration must preserve them (see
-/// README "Known limitations").
+/// README "Known limitations"). Inputs in `katex_divergences.jsonl` (aligned
+/// column gaps, null delimiters) are compared against that file instead, and
+/// need no hand edits here.
 @Suite("CoverageGolden")
 struct CoverageGoldenTests {
     struct Fixture: Decodable {
@@ -59,9 +61,14 @@ struct CoverageGoldenTests {
             }
             switch (result, fixture.error == true) {
             case (.success(let dl), false):
-                guard let fdl = fixture.displayList else {
+                guard var fdl = fixture.displayList else {
                     mismatches.append("\(fixture.input): fixture missing displayList")
                     continue
+                }
+                if let katex = KaTeXDivergences.byInput[fixture.input] {
+                    fdl = Fixture.DL(
+                        width: katex.width, height: katex.height, depth: katex.depth,
+                        itemCount: katex.itemCount)
                 }
                 if round5(dl.width) != fdl.width || round5(dl.height) != fdl.height
                     || round5(dl.depth) != fdl.depth || dl.items.count != fdl.itemCount

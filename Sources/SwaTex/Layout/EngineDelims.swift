@@ -437,11 +437,15 @@ func makeVertDelimBox(
 }
 
 /// Select a delimiter glyph large enough for the given total height.
+///
+/// The null delimiter `.` still takes `\nulldelimiterspace` — KaTeX's `makeNullDelimiter` for
+/// `\left.` / `\right.` / `\middle.` and one-sided `\genfrac` (so `cases` = `\left\{ … \right.` is
+/// 0.12em wider than its array). `\big.` is different and takes nothing (`layoutDelimSizing`).
 func makeStretchyDelim(
     _ delim: String, _ totalHeight: Double, _ options: LayoutOptions
 ) -> LayoutBox {
     if delim == "." || delim.isEmpty {
-        return .kern(0)
+        return .kern(nullDelimiterSpace)
     }
 
     // stackAlwaysDelimiters: use SVG path only when the required height exceeds

@@ -1,0 +1,28 @@
+% Small hand-picked corpus: arrays/alignment, common textbook formulas. One formula per line.
+a=b
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+e^{i\pi} + 1 = 0
+\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
+\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+\begin{aligned}a&=b\end{aligned}
+\begin{aligned} (a+b)^2 &= a^2 + 2ab + b^2 \\ (a-b)^2 &= a^2 - 2ab + b^2 \end{aligned}
+\begin{aligned} x &= 1 & y &= 2 \\ z &= 3 & w &= 4 \end{aligned}
+\begin{align*} f(x) &= x^2 \\ &\le 1 \end{align*}
+\begin{alignedat}{2} a &= b & c &= d \end{alignedat}
+\begin{gathered} a = b \\ c = d \end{gathered}
+\begin{split} a &= b + c \\ &= d \end{split}
+f(x) = \begin{cases} x^2 & x \ge 0 \\ -x & x < 0 \end{cases}
+\begin{dcases} a & b \\ c & d \end{dcases}
+\begin{rcases} a & b \\ c & d \end{rcases}
+A = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}
+\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+\begin{array}{c|c} a & b \\ \hline c & d \end{array}
+\begin{array}{lcr} a & b & c \end{array}
+\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}
+\left( \frac{\partial f}{\partial x} \right)^2 + \left[ \sum_i \lambda_i \right]
+\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}
+\overbrace{1+2+\cdots+n}^{n\text{ terms}} \xrightarrow{\text{sum}} \frac{n(n+1)}{2}
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+\binom{n}{k} = \frac{n!}{k!(n-k)!}
+\mathbb{R}^n \subseteq \mathcal{C} \cup \mathfrak{g}
+\ce{2H2 + O2 -> 2H2O}

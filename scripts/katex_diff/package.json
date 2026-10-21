@@ -1,0 +1,9 @@
+{
+  "name": "swatex-katex-diff",
+  "private": true,
+  "description": "Position-level differential test: SwaTex display list vs KaTeX laid out by headless Chrome.",
+  "type": "module",
+  "dependencies": {
+    "katex": "0.16.22"
+  }
+}

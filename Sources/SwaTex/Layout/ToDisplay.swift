@@ -407,12 +407,11 @@ private func emitBox(
         }
 
         // Draw vertical column separator lines ('|' = solid, ':' = dashed).
-        // Separator at position i has local x = content_x_offset - col_gap/2 + sum(col_widths[..i]) + col_gap * i.
-        let colGapHalf = a.colGap / 2.0
+        // Separator at boundary i sits between column i-1's right gap and column i's left gap
+        // (KaTeX emits postgap, separator, pregap), i.e. after the first i columns and their gaps.
         for (i, sep) in a.colSeparators.enumerated() {
             if let isDashed = sep {
-                let prefixW = a.colWidths[..<i].reduce(0.0, +)
-                let localX = a.contentXOffset - colGapHalf + prefixW + a.colGap * Double(i)
+                let localX = a.columnBoundaryX(i)
                 let absX = x + localX * scale - lineThickness / 2.0
                 if isDashed {
                     // Dashed vertical line: draw segments (dash=4t, gap=4t) top to bottom.
@@ -440,7 +439,7 @@ private func emitBox(
         for (r, row) in a.cells.enumerated() {
             let rh = a.rowHeights[r]
             curY += rh * scale
-            var curX = x + a.contentXOffset * scale
+            var curX = x + a.columnBoundaryX(0, includingLeftGap: true) * scale
             for (c, cell) in row.enumerated() {
                 let cw = a.colWidths[c]
                 let align: Character = c < a.colAligns.count ? a.colAligns[c] : "c"
@@ -455,12 +454,12 @@ private func emitBox(
                     depth: depth + 1, truncated: &truncated)
                 curX += cw * scale
                 if c + 1 < row.count {
-                    curX += a.colGap * scale
+                    curX += a.gapBetweenColumns(c) * scale
                 }
             }
             if a.tagColWidth > 0.0 {
                 if r < a.rowTags.count, let tb = a.rowTags[r] {
-                    let tagStartEm = a.arrayInnerWidth - a.contentXOffset + a.tagGapEm
+                    let tagStartEm = a.arrayInnerWidth - a.trailingGap() + a.tagGapEm
                     let tagX = x + tagStartEm * scale + (a.tagColWidth - tb.width) * scale
                     emitBox(
                         tb, x: tagX, y: curY, scale: scale, items: &items, floor: floor,

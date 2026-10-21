@@ -14,27 +14,19 @@ func layoutArray(
     let arrayskip = arraystretch * baselineskip
     let arstrutH = 0.7 * arrayskip
     let arstrutD = 0.3 * arrayskip
-    // align/aligned/alignedat: use thin space (3mu) so "x" and "=" are closer,
-    // and cap relation spacing in cells to 3mu so spacing before/after "=" is equal.
-    let alignRelationMu = 3.0
-    let colGap: Double =
-        switch colSeparationType {
-        case "align":
-            muToEm(alignRelationMu, quad: metrics.quad)
-        case "alignat":
-            0.0
-        case "small":
-            // smallmatrix: 2 × thickspace × (script_multiplier / current_multiplier)
-            // KaTeX: arraycolsep = 0.2778em × (scriptMultiplier / sizeMultiplier)
-            2.0 * muToEm(5.0, quad: metrics.quad) * MathStyle.script.sizeMultiplier
+    // \arraycolsep (KaTeX array.ts): half the space between two columns, and the padding outside the
+    // first / last column when hskipBeforeAndAfter. A column's own `pregap` / `postgap` replaces it on
+    // that side — aligned/align use 0 inside an rl pair and 1em between pairs, cases 1em after the
+    // first column.
+    let arraycolsep: Double =
+        if colSeparationType == "small" {
+            // smallmatrix: thickspace × (script_multiplier / current_multiplier)
+            muToEm(5.0, quad: metrics.quad) * MathStyle.script.sizeMultiplier
                 / options.sizeMultiplier
-        default:
-            2.0 * 5.0 * pt  // 2 × arraycolsep
+        } else {
+            5.0 * pt
         }
-    var cellOptions = options
-    if colSeparationType == "align" || colSeparationType == "alignat" {
-        cellOptions.alignRelationSpacing = alignRelationMu
-    }
+    let colGap = 2.0 * arraycolsep
 
     let numRows = body.count
     if numRows == 0 {
@@ -95,7 +87,7 @@ func layoutArray(
         for (c, cell) in row.enumerated() {
             let cellNodes: [ParseNode] =
                 if case let .ordGroup(nodes, _) = cell.kind { nodes } else { [cell] }
-            let cellBox = layoutExpression(cellNodes, cellOptions, isRealGroup: true)
+            let cellBox = layoutExpression(cellNodes, options, isRealGroup: true)
             rh = max(rh, cellBox.height)
             rd = max(rd, cellBox.depth)
             if c < numCols {
@@ -162,14 +154,25 @@ func layoutArray(
 
     let offset = totalHeight / 2.0 + metrics.axisHeight
 
-    // Extra x padding before col 0 and after last col (hskipBeforeAndAfter).
-    let contentXOffset = hskipBeforeAndAfter ? colGap / 2.0 : 0.0
+    // Space on each side of every column (KaTeX: the pregap span is added when `c > 0 ||
+    // hskipBeforeAndAfter`, the postgap span when `c < nc - 1 || hskipBeforeAndAfter`).
+    let alignSpecs = (cols ?? []).filter { $0.alignType == .align }
+    var colGapsBefore = [Double](repeating: 0, count: numCols)
+    var colGapsAfter = [Double](repeating: 0, count: numCols)
+    for c in 0..<numCols {
+        let spec = c < alignSpecs.count ? alignSpecs[c] : nil
+        if c > 0 || hskipBeforeAndAfter {
+            colGapsBefore[c] = spec?.pregap ?? arraycolsep
+        }
+        if c < numCols - 1 || hskipBeforeAndAfter {
+            colGapsAfter[c] = spec?.postgap ?? arraycolsep
+        }
+    }
+    let contentXOffset = colGapsBefore.first ?? 0.0
 
     // Width of the cell grid including horizontal padding (no tag column).
     let arrayInnerWidth =
-        colWidths.reduce(0, +)
-        + colGap * Double(numCols > 0 ? numCols - 1 : 0)
-        + 2.0 * contentXOffset
+        colWidths.reduce(0, +) + colGapsBefore.reduce(0, +) + colGapsAfter.reduce(0, +)
 
     var rowTagBoxes = [LayoutBox?](repeating: nil, count: numRows)
     var tagColWidth = 0.0
@@ -207,6 +210,8 @@ func layoutArray(
                 colGap: colGap,
                 offset: offset,
                 contentXOffset: contentXOffset,
+                colGapsBefore: colGapsBefore,
+                colGapsAfter: colGapsAfter,
                 colSeparators: colSeparators,
                 hlinesBeforeRow: hlinesPadded,
                 ruleThickness: ruleThickness,
