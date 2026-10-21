@@ -32,3 +32,6 @@ venv/
 
 # macOS
 .DS_Store
+
+# scripts/katex_diff
+node_modules/
